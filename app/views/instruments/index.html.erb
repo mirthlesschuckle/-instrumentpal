@@ -2,6 +2,8 @@
 </h1>
 <ul>
   <% @instruments.each do |instrument| %>
-    <li><%= instrument.name %></li>
+    <li><%= link_to instrument.model, instrument %></li>
   <% end %>
 </ul>
+
+<p><%= link_to "Add a new instrument", new_instrument_path %></p>
