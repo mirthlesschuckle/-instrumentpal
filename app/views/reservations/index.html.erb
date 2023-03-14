@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>My reservations</h1>
+  <div class="container">
+    <% @reservations.each do |reservation| %>
+    <div class="container">
+        <% Reservation.where(user: reservation.user_id) %>
+          <p><%= "#{reservation.instrument.user.name}'s #{reservation.instrument.model} in #{reservation.instrument.location}" %></p>
+          <p><%= "Reserved from: #{reservation.start_date.strftime('%A %d %B %Y')}" %></p>
+          <p><%= "For: #{(reservation.end_date - reservation.start_date).to_i} #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %></p>
+          <p><%= "Until: #{reservation.end_date.strftime('%A %d %B %Y')}" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
