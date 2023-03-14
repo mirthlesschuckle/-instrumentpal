@@ -1,0 +1,6 @@
+<%= simple_form_for(instrument) do |f| %>
+  <%= f.input :model %>
+  <%= f.input :location %>
+  <%= f.input :price, label: 'Price (€)' %>
+  <%= f.submit %>
+<% end %>
