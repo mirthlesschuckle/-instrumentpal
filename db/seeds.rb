@@ -46,37 +46,61 @@ instruments = [
     location: 'London',
     model: 'Piano',
     price: 100,
-    user: User.last
+    user: User.all.sample
   },
   {
     location: 'Berlin',
-    model: 'guitar',
+    model: 'Guitar',
     price: 150,
-    user: User.last
+    user: User.all.sample
   },
   {
     location: 'Birmingham',
-    model: 'flute',
+    model: 'Flute',
     price: 80,
-    user: User.last
+    user: User.all.sample
   },
   {
     location: 'Glasgow',
     model: 'violin',
     price: 65,
-    user: User.last
+    user: User.all.sample
   },
   {
     location: 'Belfast',
     model: 'Bass',
     price: 200,
-    user: User.last
+    user: User.all.sample
   },
   {
-    location: 'Belfast',
+    location: 'Porto',
     model: 'Birimbau',
     price: 300,
-    user: User.last
+    user: User.all.sample
+  },
+  {
+    location: 'Paris',
+    model: 'Drums',
+    price: 280,
+    user: User.all.sample
+  },
+  {
+    location: 'Milan',
+    model: 'Cello',
+    price: 170,
+    user: User.all.sample
+  },
+  {
+    location: 'Madrid',
+    model: 'Saxophone',
+    price: 80,
+    user: User.all.sample
+  },
+  {
+    location: 'Brussels',
+    model: 'Triangle',
+    price: 10,
+    user: User.all.sample
   }
 ]
 
@@ -90,43 +114,43 @@ reservations = [
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'pending',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   },
   {
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'pending',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   },
   {
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'accepted',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   },
   {
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'accepted',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   },
   {
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'rejected',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   },
   {
     start_date: Date.today,
     end_date: Date.today + 1.week,
     status: 'rejected',
-    user: User.first,
-    instrument: Instrument.last
+    user: User.all.sample,
+    instrument: Instrument.all.sample
   }
 ]
 
