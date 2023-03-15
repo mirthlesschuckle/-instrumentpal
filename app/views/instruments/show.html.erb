@@ -1,7 +1,16 @@
-<h1><%= @instrument.model %></h1>
-<p><%= @instrument.location %></p>
-<p><%= @instrument.price %></p>
-<p><%= @instrument.user.name %></p>
+<div class="container p-2">
+  <div class="card rounded p-3" style="width: 400px">
+    <h1><%= @instrument.model %></h1>
+    <p><%= @instrument.location %></p>
+    <p><%= "Price: #{@instrument.price}0€/day" %></p>
+    <p><%= "Owner: #{(@instrument.user.name).capitalize}" %></p>
+  </div>
 
-<p><%= link_to "Back to all instruments", instruments_path %></p>
-<p><%= link_to "Reserve this instrument", new_instrument_reservation_path(@instrument) %></p>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-start">
+      <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
+      <%= link_to "Reserve this instrument", new_instrument_reservation_path(@instrument), class: "btn btn-primary m-4" %>
+    </div>
+  </div>
+
+</div>

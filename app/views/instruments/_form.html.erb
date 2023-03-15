@@ -1,6 +1,16 @@
-<%= simple_form_for(instrument) do |f| %>
-  <%= f.input :model %>
-  <%= f.input :location %>
-  <%= f.input :price, label: 'Price (€)' %>
-  <%= f.submit %>
-<% end %>
+<div class="container p-2">
+
+  <%= simple_form_for(instrument) do |f| %>
+    <%= f.input :model %>
+    <%= f.input :location %>
+    <%= f.input :price, label: 'Price (€)' %>
+    <%= f.submit %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-12 d-flex justify-content-start">
+      <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
+    </div>
+  </div>
+
+</div>
