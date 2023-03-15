@@ -1,0 +1,24 @@
+.banner{
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("http://cdn.shopify.com/s/files/1/1094/6716/articles/unnamed_ad4c21c5-51d0-409c-8498-e57a17ff369c.jpg?v=1664264289");
+  background-size: cover;
+  background-position: center;
+  padding: 200px 0;
+}
+
+#banner-text{
+  color: white;
+}
+
+#banner-text h1{
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+#banner-text h2{
+  font-size: 25px;
+  font-weight: bolder;
+  opacity: 0.8;
+  margin-bottom: 30px;
+  text-align: left;
+  padding-left: 0;
+}
