@@ -3,5 +3,6 @@
 <p><%= @instrument.price %></p>
 <p><%= @instrument.user.name %></p>
 
+<p><%= cl_image_tag @instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
 <p><%= link_to "Back to all instruments", instruments_path %></p>
 <p><%= link_to "Reserve this instrument", new_instrument_reservation_path(@instrument) %></p>
