@@ -1,0 +1,5 @@
+<%= simple_form_for(reservation) do |f| %>
+  <%= f.input :start_date, as: :date, label: 'Start Date' %>
+  <%= f.input :end_date, as: :date, label: 'End Date' %>
+  <%= f.submit %>
+<% end %>

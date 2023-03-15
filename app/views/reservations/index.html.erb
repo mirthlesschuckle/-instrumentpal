@@ -1,14 +1,26 @@
-<div class="container">
-  <h1>My reservations</h1>
-  <div class="container">
+<div class="container p-2">
+  <h1>My instrument reservations</h1>
+  <div class="row">
     <% @reservations.each do |reservation| %>
-    <div class="container">
-        <% Reservation.where(user: reservation.user_id) %>
-          <p><%= "#{reservation.instrument.user.name}'s #{reservation.instrument.model} in #{reservation.instrument.location}" %></p>
-          <p><%= "Reserved from: #{reservation.start_date.strftime('%A %d %B %Y')}" %></p>
-          <p><%= "For: #{(reservation.end_date - reservation.start_date).to_i} #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %></p>
+      <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card p-4 rounded">
+          <% Reservation.where(user: reservation.user_id) %>
+          <h3><%= "#{reservation.instrument.model}" %></h3>
+          <p><%= "#{reservation.instrument.location}" %></p>
+          <p><%= "From: #{reservation.start_date.strftime('%A %d %B %Y')}" %></p>
           <p><%= "Until: #{reservation.end_date.strftime('%A %d %B %Y')}" %></p>
+          <p><%= "For: #{(reservation.end_date - reservation.start_date).to_i} #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %></p>
+          <p><%= "Owner: #{reservation.instrument.user.name}" %></p>
+        </div>
       </div>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 d-flex justify-content-start">
+      <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
+      <%= link_to "Edit a reservation", "#", class: "btn btn-danger m-4" %>
+      <%= link_to "Cancel a reservation", "#", class: "btn btn-danger m-4" %>
+      <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>
+    </div>
   </div>
 </div>
