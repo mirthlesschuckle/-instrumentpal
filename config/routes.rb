@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:index, :show, :edit, :update, :destroy]
 
+  get 'profile', to: 'pages#profile', as: "profile"
+  get 'rent_instruments', to: 'pages#rent_instruments', as: "rent_instruments"
+  get 'own_instruments', to: 'pages#own_instruments', as: "own_instruments"
 end

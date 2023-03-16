@@ -1,26 +1,18 @@
 <div class="main-container">
 <div class="container p-2 instrument-container">
   <h1>Instruments available for rental</h1>
-  <div class="row">
-    <% @instruments.each do |instrument| %>
-      <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card rounded">
-          <%= link_to instrument_path(instrument), class: "btn btn-block text-left p-0 m-0 h-100 d-flex flex-column justify-content-center" do %>
-            <div class="background-image" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.5) 75%), url(<%= asset_path('music.jpg') %>); background-size: cover; background-position: center; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1;"></div>
-            <div class="card-body p-3" style="z-index: 2; position: relative;">
-              <h5 class="card-title mb-0" style="color: white;"><%= instrument.model %></h5>
-              <p class="card-text small" style="color: white;"><%= instrument.location %></p>
-            </div>
-          <% end %>
-        </div>
-      </div>
+
+  <% @instruments.each do |instrument| %>
+
+    <%= link_to instrument_path(instrument), class: "" do %>
+      <h5 class="card-title mb-0" style=""><%= instrument.model %></h5>
+      <p class="card-text small" style=""><%= instrument.location %></p>
+      <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
     <% end %>
-  </div>
-  <div class="row">
-    <div class="col-lg-12 d-flex justify-content-start">
-      <%= link_to "Add a new instrument", new_instrument_path, class: "btn btn-primary m-4" %>
-      <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>
-    </div>
-  </div>
+
+  <% end %>
+
+  <%= link_to "Add a new instrument", new_instrument_path, class: "btn btn-primary m-4" %>
+  <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>
 </div>
 </div>
