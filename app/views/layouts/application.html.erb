@@ -18,6 +18,11 @@
       <%= render "shared/flashes" %>
       <%= render "shared/footer" %>
       <script>
+        // show footer when page height is less than window height
+        if (document.documentElement.scrollHeight <= window.innerHeight) {
+          document.querySelector('.footer').classList.add('show-footer');
+        }
+
         // show footer when user scrolls to the end of the content
         window.addEventListener('scroll', function() {
           var pageHeight = document.documentElement.scrollHeight;
