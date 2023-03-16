@@ -4,7 +4,9 @@
   <p><%= @instrument.location %></p>
   <p><%= "Price: #{@instrument.price}0€/day" %></p>
   <p><%= "Owner: #{(@instrument.user.name).capitalize}" %></p>
-  <p><%= cl_image_tag @instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
+  <% if @instrument.photo.attached? %>
+    <p><%= cl_image_tag @instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
+  <% end %>
 
   <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
   <%= link_to "Reserve this instrument", new_instrument_reservation_path(@instrument), class: "btn btn-primary m-4" %>

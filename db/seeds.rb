@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "open-uri"
 
 puts 'cleaning the database...'
 User.destroy_all
@@ -27,7 +28,7 @@ users = [
   {
     name: "michael",
     email: "michael@gmail.com",
-    password: "123456",
+    password: "123456"
   },
   {
     name: "jian",
@@ -45,7 +46,7 @@ instruments = [
   {
     location: 'London',
     model: 'Piano',
-    price: 100,
+    price: 1000,
     user: User.all.sample
   },
   {
@@ -104,9 +105,36 @@ instruments = [
   }
 ]
 
+photos_instrument_url = ['https://steinway.co.uk/wp-content/uploads/2020/08/Essex-173-1024x576.png',
+  'https://images.guitarguitar.co.uk/cdn/small/160/753_bodysizes_little%20martin.jpg',
+  'https://cdn.images.fecom-media.com/FE00015299/images/Sonata%20Student%20Flute%20-%20open%20case%20and%20built%20flute.jpg',
+  'https://caswells-strings.co.uk/wp-content/uploads/2012/11/p200-violin-outfit.jpg',
+  'https://d1aeri3ty3izns.cloudfront.net/media/31/310922/600/preview_1.jpg',
+  'https://centerforworldmusic.org/wp-content/uploads/2015/06/berimbaus04_1-1030x684.jpg',
+  'https://cdn.shopify.com/s/files/1/0364/6701/5819/products/PP250BLK_1.jpg',
+  'https://d1aeri3ty3izns.cloudfront.net/media/57/571117/1200/preview.jpg',
+  'https://d1aeri3ty3izns.cloudfront.net/media/41/414314/600/preview.jpg',
+  'https://media.npr.org/assets/img/2014/07/05/triangle_wide-401b9d28d1c793170b080d1ed11628b8d82a50fc-s1400-c100.jpg']
+
+instruments_id = []
+
 instruments.each do |instrument|
-  Instrument.create!(instrument)
+  instrument = Instrument.new(
+    model: instrument[:model],
+    location: instrument[:location],
+    price: instrument[:price],
+    user: instrument[:user]
+  )
+  instrument.save!
+  instruments_id << instrument.id
   puts "instrument created!"
+end
+
+instruments_id.zip(photos_instrument_url).each do |instrument_id, photo_url|
+  puts "Setting photo for instrument #{instrument_id} from URL #{photo_url}"
+  photo = URI.open(photo_url)
+  instrument = Instrument.find(instrument_id)
+  instrument.photo.attach(io: photo, filename: "#{rand(1...1000)}_instrument.png")
 end
 
 reservations = [
