@@ -11,3 +11,27 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+button[data-tabs-target="tab"] {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+button[data-tabs-target="tab"]:hover {
+  background-color: #ddd;
+}
+
+button[data-tabs-target="tab"].active {
+  background-color: #ccc;
+}
+
+div[data-tabs-target="content"] {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
