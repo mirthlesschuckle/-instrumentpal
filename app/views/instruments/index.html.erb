@@ -1,4 +1,5 @@
-<div class="container p-2">
+<div class="main-container">
+<div class="container p-2 instrument-container">
   <h1>Instruments available for rental</h1>
   <div class="row">
     <% @instruments.each do |instrument| %>
@@ -21,4 +22,5 @@
       <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>
     </div>
   </div>
+</div>
 </div>

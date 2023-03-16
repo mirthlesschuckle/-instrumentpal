@@ -15,7 +15,8 @@
 .cards{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: 0;
+  gap: 20px;
   margin-bottom: 30px;
 }
 
@@ -30,4 +31,9 @@
   font-size: 15px;
   opacity: 0.8;
   margin-top: 10px;
+}
+
+.instrument-container{
+  z-index: -1;
+  position: relative;
 }
