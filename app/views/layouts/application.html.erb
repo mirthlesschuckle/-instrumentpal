@@ -16,6 +16,20 @@
       <p class="alert"><%= alert %></p>
       <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
+      <%= render "shared/footer" %>
+      <script>
+        // show footer when user scrolls to the end of the content
+        window.addEventListener('scroll', function() {
+          var pageHeight = document.documentElement.scrollHeight;
+          var windowHeight = window.innerHeight;
+          var scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+          if (pageHeight - (scrollPosition + windowHeight) <= 50) {
+            document.querySelector('.footer').classList.add('show-footer');
+          } else {
+            document.querySelector('.footer').classList.remove('show-footer');
+          }
+        });
+      </script>
       <%= yield %>
     </div>
   </body>
