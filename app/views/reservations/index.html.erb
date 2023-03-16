@@ -1,5 +1,43 @@
-<div class="main-container">
-<div class="container">
-  <h1><strong>Reservations index: Empty</strong></h1>
-</div>
+<h1><strong>Reservations index</strong></h1>
+
+<div data-controller="tabs">
+  <div>
+    <button data-action="tabs#changeTab" data-tabs-target="tab">My reservations</button>
+    <button data-action="tabs#changeTab" data-tabs-target="tab">My instruments</button>
+    <button data-action="tabs#changeTab" data-tabs-target="tab">Pending</button>
+  </div>
+  <div data-tabs-target="content">
+
+    <% @reservations.each do |reservation| %>
+      <h3><%= "#{reservation.instrument.model}" %></h3>
+      <p><%= "#{reservation.instrument.location}" %></p>
+      <p><%= "From: #{reservation.start_date.strftime('%A %d %B %Y')}" %></p>
+      <p><%= "Until: #{reservation.end_date.strftime('%A %d %B %Y')}" %></p>
+      <p><%= "For: #{(reservation.end_date - reservation.start_date).to_i} #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %></p>
+      <p><%= "Owner: #{(reservation.instrument.user.name).capitalize}" %></p>
+      <p><%= "Booking Status: #{reservation.status}" %></p>
+      <p><%= link_to "Edit Reservation", edit_reservation_path(reservation), class: "btn btn-primary" %></p>
+
+      <p><%= cl_image_tag reservation.instrument.photo.key, height: 300, width: 400, crop: :fill %></p>
+    <% end %>
+
+  </div>
+  <div data-tabs-target="content">
+    <% current_user.instruments.each do |instrument| %>
+      <h3><%= (instrument.model).capitalize %></h3>
+      <p><%= (instrument.location).capitalize %></p>
+      <p>
+        <% if instrument.reservations.present? && instrument.reservations.last.status.present? %>
+          <%= "Booking Status: #{instrument.reservations.last.status}" %>
+        <% else %>
+          Booking Status: No booking
+        <% end %>
+      </p>
+      <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %></p>
+      <%= link_to "Edit instrument", edit_instrument_path(instrument), class: "btn btn-primary m-4" %>
+    <% end %>
+  </div>
+  <div data-tabs-target="content">
+    <p>pedning list</p>
+  </div>
 </div>

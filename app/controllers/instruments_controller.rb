@@ -1,13 +1,11 @@
 class InstrumentsController < ApplicationController
   def index
-    start_date = Date.today
-    end_date = Date.today + 1.month # or any other desired end_date
-    @instruments = available_instruments(start_date, end_date)
+    @instruments = available_instruments
   end
 
-  def available_instruments(start_date, end_date)
-    reserved_instruments = Reservation.where("start_date < ? AND end_date > ?", end_date, start_date).pluck(:instrument_id)
-    Instrument.where.not(id: reserved_instruments)
+  def available_instruments
+    reserved_instruments_ids = Reservation.select(:instrument_id).distinct
+    Instrument.where.not(id: reserved_instruments_ids)
   end
 
   def show
