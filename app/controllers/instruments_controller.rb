@@ -25,6 +25,16 @@ class InstrumentsController < ApplicationController
     redirect_to instruments_path(@instrument)
   end
 
+  def edit
+    @instrument = Instrument.find(params[:id])
+  end
+
+  def update
+    @instrument = Instrument.find(params[:id])
+    @instrument.update(instrument_params) # Will raise ActiveModel::ForbiddenAttributesError
+    redirect_to instruments_path(@instrument)
+  end
+
   private
 
   def instrument_params

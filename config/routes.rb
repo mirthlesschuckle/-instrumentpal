@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
 
   resources :reservations, only: [:index, :show, :edit, :update, :destroy]
+
 end
