@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :set_reservation, only: [:edit, :update]
 
   def index
     @reservations = current_user.reservations
@@ -24,7 +25,22 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @reservation.update(reservation_params)
+      redirect_to reservations_path, notice: 'Reservation was successfully updated.'
+    else
+      render :edit, notice: 'Nothing as been changed.'
+    end
+  end
+
   private
+
+  def set_reservation
+    @reservation = current_user.reservations.find(params[:id])
+  end
 
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date)
