@@ -4,9 +4,11 @@
   padding: 20px;
   text-align: center;
   width: 100%;
-  display: none; /* hide the footer by default */
+  position: relative;
+  bottom: 0;
   height: 150px; /* set the height of the footer */
   transition: opacity 0.5s ease-in-out 0.5s;
+  margin-top: 60px;
 }
 
 .footer .links {
@@ -15,14 +17,5 @@
 }
 
 .show-footer {
-  display: block; /* show the footer when the class is added */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-body {
-  /* add a padding-bottom equal to the height of the footer */
-  padding-bottom: 200px; /* adjust this value based on your footer height */
+  opacity: 1; /* show the footer when the class is added */
 }
