@@ -1,13 +1,10 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:edit, :update]
+  before_action :set_reservation_for_update_status, only: [:update_status]
 
   def index
     @reservations = current_user.reservations
   end
-
-  # def show
-  #   @reservation = Reservation.find(params[:id])
-  # end
 
   def new
     @instrument = Instrument.find(params[:instrument_id])
@@ -19,7 +16,7 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.new(reservation_params)
     @reservation.instrument = @instrument
     if @reservation.save
-      redirect_to reservations_path, notice: 'Reservation was successfully created.'
+      redirect_to reservations_path, alert: 'Reservation was successfully created.'
     else
       redirect_to instruments_path(@instrument), status: :unprocessable_entity
     end
@@ -30,9 +27,17 @@ class ReservationsController < ApplicationController
 
   def update
     if @reservation.update(reservation_params)
-      redirect_to reservations_path, notice: 'Reservation was successfully updated.'
+      redirect_to reservations_path, alert: 'Reservation was successfully updated.'
     else
-      render :edit, notice: 'Nothing as been changed.'
+      render :edit, alert: 'Nothing as been changed.'
+    end
+  end
+
+  def update_status
+    if @reservation.update(status: params[:reservation][:status])
+      redirect_to reservations_path, alert: 'Reservation was successfully updated.'
+    else
+      render :edit, alert: 'Nothing has been changed.'
     end
   end
 
@@ -42,7 +47,12 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.find(params[:id])
   end
 
+  def set_reservation_for_update_status
+    instrument_ids = current_user.instruments.pluck(:id)
+    @reservation = Reservation.where(instrument_id: instrument_ids).find(params[:id])
+  end
+
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date)
+    params.require(:reservation).permit(:start_date, :end_date, :status)
   end
 end

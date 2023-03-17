@@ -11,3 +11,72 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+button[data-tabs-target="tab"] {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+button[data-tabs-target="tab"]:hover {
+  background-color: #ddd;
+}
+
+button[data-tabs-target="tab"].active {
+  background-color: #ccc;
+}
+
+div[data-tabs-target="content"] {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+
+
+
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  width: 700px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.card-product img {
+  padding: 20px;
+  height: 231px;
+  width: 308px;
+  object-fit: cover;
+}
+
+.card-product h3 {
+  font-size: 25px;
+  line-height: 1.4;
+  opacity: .7;
+  color: black;
+  text-decoration: none;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  color: black;
+  text-decoration: none;
+}
+
+.card-product .card-product-infos {
+  padding: 1px;
+  color: black;
+}

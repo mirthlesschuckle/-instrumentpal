@@ -1,8 +1,9 @@
-<h1>Reservation date</h1>
+<div class="container" style="width: 500px">
+  <h1>Reservation date</h1>
 
-<div class="container">
 
-    <%= form_with(model:[@instrument, @reservation], local: true) do |form| %>
+
+  <%= form_with(model:[@instrument, @reservation], local: true) do |form| %>
     <div class="form-group">
       <%= form.label :start_date %>
       <%= form.date_field :start_date, class: "form-control" %>
@@ -14,9 +15,7 @@
     </div>
     <%= form.submit "Create Reservation", class: "btn btn-primary" %>
   <% end %>
+
+
+  <%= link_to "Back to instruments", instruments_path, class: "btn btn-secondary mt-3" %>
 </div>
-
-
-<p><%= link_to "Back to instruments", instruments_path %></p>
-
-<%# <%= render "form", reservation: @reservation %>

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:index, :show, :edit, :update, :destroy]
 
+  # get 'update_status', to: 'reservations#update_status', as: 'update_status'
+  patch 'reservations/:id/update_status', to: 'reservations#update_status', as: 'update_status'
+
   get 'profile', to: 'pages#profile', as: "profile"
-  get 'rent_instruments', to: 'pages#rent_instruments', as: "rent_instruments"
-  get 'own_instruments', to: 'pages#own_instruments', as: "own_instruments"
 end
