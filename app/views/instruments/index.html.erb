@@ -12,23 +12,18 @@
   </div>
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
-
     <% @instruments.each do |instrument| %>
-
       <div class="col">
         <%= link_to instrument_path(instrument), class: "card-link text-decoration-none" do %>
-          <div class="card h-100" >
-            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top" %>
-            <div class="card-body">
+          <div class="card h-100" style="margin: 0 20px;">
+            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top mx-auto d-block" %>
+            <div class="card-body text-center">
               <h3 class="card-title text-dark" style="margin-top: 40px; font-size: 25px;"><%= instrument.model %></h3>
               <h5 class="card-text text-dark" style="margin-top: 40px;">Location: <%= instrument.location %></h5>
             </div>
           </div>
         <% end %>
       </div>
-
     <% end %>
-
   </div>
-
 </div>
