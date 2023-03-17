@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   # get 'update_status', to: 'reservations#update_status', as: 'update_status'
   patch 'reservations/:id/update_status', to: 'reservations#update_status', as: 'update_status'
+  get 'story', to: 'pages#story', as: "story"
 end
