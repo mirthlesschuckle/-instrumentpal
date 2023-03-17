@@ -1,41 +1,97 @@
-<div data-controller="tabs">
-  <div>
-    <button data-action="tabs#changeTab" data-tabs-target="tab">My reservations</button>
-    <button data-action="tabs#changeTab" data-tabs-target="tab">My instruments</button>
-    <button data-action="tabs#changeTab" data-tabs-target="tab">Pending</button>
+<div class="container p-2">
+
+  <div class="row justify-content-between align-items-center">
+    <div class="col-auto">
+      <%= link_to fa_icon("angle-left", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 40px;'), root_path%>
+    </div>
+    <div class="col-auto">
+      <h1 class="text-center mt-5 mb-5">Bookings</h1>
+    </div>
+    <div class="col-auto">
+      <%= link_to fa_icon("plus", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 30px;'), instruments_path%>
+    </div>
   </div>
-  <div data-tabs-target="content">
 
-    <% @reservations.each do |reservation| %>
-      <h3><%= "#{reservation.instrument.model}" %></h3>
-      <p><%= "#{reservation.instrument.location}" %></p>
-      <p><%= "From: #{reservation.start_date.strftime('%A %d %B %Y')}" %></p>
-      <p><%= "Until: #{reservation.end_date.strftime('%A %d %B %Y')}" %></p>
-      <p><%= "For: #{(reservation.end_date - reservation.start_date).to_i} #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %></p>
-      <p><%= "Owner: #{(reservation.instrument.user.name).capitalize}" %></p>
-      <p><%= "Booking Status: #{reservation.status}" %></p>
-      <p><%= link_to "Edit Reservation", edit_reservation_path(reservation), class: "btn btn-primary" %></p>
+  <div data-controller="tabs">
+    <div>
+      <button data-action="tabs#changeTab" data-tabs-target="tab">My reservations</button>
+      <button data-action="tabs#changeTab" data-tabs-target="tab">My instruments</button>
+      <button data-action="tabs#changeTab" data-tabs-target="tab">Requests</button>
+    </div>
 
-      <p><%= cl_image_tag reservation.instrument.photo.key, height: 300, width: 400, crop: :fill %></p>
-    <% end %>
-
-  </div>
-  <div data-tabs-target="content">
-    <% current_user.instruments.each do |instrument| %>
-      <h3><%= (instrument.model).capitalize %></h3>
-      <p><%= (instrument.location).capitalize %></p>
-      <p>
-        <% if instrument.reservations.present? && instrument.reservations.last.status.present? %>
-          <%= "Booking Status: #{instrument.reservations.last.status}" %>
-        <% else %>
-          Booking Status: No booking
+    <div data-tabs-target="content">
+      <% @reservations.each do |reservation| %>
+        <%= link_to edit_reservation_path(reservation), class: "text-decoration-none", style: "max-width-700px" do %>
+          <div class="card-product">
+            <%= cl_image_tag reservation.instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
+            <div class="card-product-infos">
+              <h3><%= reservation.instrument.model %></h3>
+              <p>Location: <%= reservation.instrument.location %></p>
+              <p>From: <%= reservation.start_date.strftime('%A %d %B %Y') %></p>
+              <p>Until: <%= reservation.end_date.strftime('%A %d %B %Y') %></p>
+              <p>
+                For: <%= "#{(reservation.end_date - reservation.start_date).to_i}
+                #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %>
+              </p>
+              <p>Owner: <%= (reservation.instrument.user.name).capitalize %></p>
+              <p>Booking Status: <%= reservation.status %></p>
+            </div>
+          </div>
         <% end %>
-      </p>
-      <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %></p>
-      <%= link_to "Edit instrument", edit_instrument_path(instrument), class: "btn btn-primary m-4" %>
+      <% end %>
+    </div>
+
+
+
+    <div data-tabs-target="content">
+      <% current_user.instruments.each do |instrument| %>
+        <%= link_to edit_instrument_path(instrument), class: "text-decoration-none", style: "max-width-700px" do %>
+          <div class="card-product">
+            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
+            <div class="card-product-infos">
+              <h3><%= (instrument.model).capitalize %></h3>
+              <p>Location: <%= (instrument.location).capitalize %></p>
+              <p>Pricing: <%= "#{instrument.price}€/day" %></p>
+              <p>
+                <% if instrument.reservations.present? %>
+                  <%= "Booked by: #{(instrument.reservations.last.user.name).capitalize}" %>
+                <% else %>
+                  Booking Status: No booking
+                <% end %>
+              </p>
+              <% if instrument.reservations.present? %>
+                <p><%= "From: #{instrument.reservations.last.start_date.strftime('%A %d %B %Y')}" %></p>
+                <p><%= "Until: #{instrument.reservations.last.end_date.strftime('%A %d %B %Y')}" %></p>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div data-tabs-target="content">
+    <% current_user.instruments.each do |instrument| %>
+      <% instrument.reservations.each do |reservation| %>
+        <% if reservation.status == "pending" %>
+          <%= form_with url: update_status_path(id: reservation), method: :patch, local: true, class: "text-decoration-none", style: "max-width-700px" do %>
+            <div class="card-product">
+              <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
+              <div class="card-product-infos">
+                <h3><%= (instrument.model).capitalize %></h3>
+                <p>Location: <%= (instrument.location).capitalize %></p>
+                <p>
+                  <%= "Booking Status: #{reservation.status}" %>
+                </p>
+                <%= select_tag "reservation[status]", options_for_select([['Accept', 'accepted'], ['Reject', 'rejected']]), include_blank: 'Update Status' %>
+                <%= submit_tag 'Update', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
-  <div data-tabs-target="content">
-    <p>pedning list</p>
+
   </div>
 </div>

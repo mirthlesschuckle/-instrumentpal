@@ -32,6 +32,51 @@ button[data-tabs-target="tab"].active {
 div[data-tabs-target="content"] {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
+}
+
+
+
+
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  width: 700px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.card-product img {
+  padding: 20px;
+  height: 231px;
+  width: 308px;
+  object-fit: cover;
+}
+
+.card-product h3 {
+  font-size: 25px;
+  line-height: 1.4;
+  opacity: .7;
+  color: black;
+  text-decoration: none;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  color: black;
+  text-decoration: none;
+}
+
+.card-product .card-product-infos {
+  padding: 1px;
+  color: black;
 }
