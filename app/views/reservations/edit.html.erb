@@ -1,20 +1,28 @@
-<div class="container" style="width: 500px">
-  <h1>Edit Reservation</h1>
+<div class="container" style="width: 500px; margin-top: 200px; margin-bottom: 245px;">
+  <h1 style="margin-bottom: 50px; text-align: center;">Edit Reservation</h1>
 
-  <%= form_with(model: @reservation, local: true) do |form| %>
+  <%= form_with(model:[@instrument, @reservation], local: true) do |form| %>
     <div class="form-group">
       <%= form.label :start_date %>
       <%= form.date_field :start_date, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"style="margin-top: 30px;">
       <%= form.label :end_date %>
       <%= form.date_field :end_date, class: "form-control" %>
     </div>
-
-    <%= form.submit "Update", class: "btn btn-outline-success" %>
+    <div class="row mb-3" style="margin-top: 80px;">
+        <div class="col-lg-12 text-center">
+          <div class="d-flex justify-content-between align-items-center">
+              <%= link_to fa_icon("angle-left", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 40px;'), instruments_path %>
+              <div>
+                <%= form.submit "Update", style: "background-color: #2156af; border-radius: 20px; border: none; color: #FFFFFF; font-size: 20px; font-weight: bold; padding: 10px 20px; text-decoration: none; transition: all 0.3s ease-in-out;"%>
+                <%= button_to 'Delete', reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, style: "background-color: #2156af; border-radius: 20px; border: none; color: #FFFFFF; font-size: 20px; font-weight: bold; padding: 10px 20px; text-decoration: none; transition: all 0.3s ease-in-out;" %>
+              </div>
+          </div>
+        </div>
+    </div>
   <% end %>
 
-  <%= button_to 'Delete', reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
-  <%= link_to "My Reservations", reservations_path, class: "btn btn-secondary mt-3" %>
+
 </div>
