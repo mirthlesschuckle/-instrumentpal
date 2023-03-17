@@ -46,7 +46,7 @@
 
     <div data-tabs-target="content">
       <% current_user.instruments.each do |instrument| %>
-        <%= link_to edit_instrument_path(instrument), class: "text-decoration-none", style: "max-width-700px" do %>
+        <%= link_to instrument_path(instrument), class: "text-decoration-none", style: "max-width-700px" do %>
           <div class="card-product">
             <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
             <div class="card-product-infos">
