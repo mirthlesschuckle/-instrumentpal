@@ -16,7 +16,8 @@
       </p>
       <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %></p>
       <%= link_to "Edit instrument", edit_instrument_path(instrument), class: "btn btn-primary m-4" %>
-
+    <%= link_to "Delete instrument", instrument_path(@instrument), class: "btn btn-primary m-4", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
     <% end %>
   </div>
 
