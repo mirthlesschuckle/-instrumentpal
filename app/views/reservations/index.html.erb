@@ -1,11 +1,11 @@
-<div class="container p-2">
+<div class="container p-2" style="min-height: 650px;">
 
   <div class="row justify-content-between align-items-center">
     <div class="col-auto">
       <%= link_to fa_icon("angle-left", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 40px;'), root_path%>
     </div>
     <div class="col-auto">
-      <h1 class="text-center mt-5 mb-5">Bookings</h1>
+      <h1 class="text-center mt-5 mb-5">My Dashboard</h1>
     </div>
     <div class="col-auto">
       <%= link_to fa_icon("plus", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 30px;'), instruments_path%>
@@ -37,12 +37,11 @@
               <p>Owner: <%= (reservation.instrument.user.name).capitalize %></p>
               <p>Booking Status: <%= reservation.status %></p>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+
+        </div>
       <% end %>
     </div>
-
-
 
     <div data-tabs-target="content">
       <% current_user.instruments.each do |instrument| %>
@@ -71,7 +70,7 @@
       <% end %>
     </div>
 
-    <div data-tabs-target="content">
+    <div data-tabs-target="content" >
     <% current_user.instruments.each do |instrument| %>
       <% instrument.reservations.each do |reservation| %>
         <% if reservation.status == "pending" %>
@@ -85,7 +84,7 @@
                   <%= "Booking Status: #{reservation.status}" %>
                 </p>
                 <%= select_tag "reservation[status]", options_for_select([['Accept', 'accepted'], ['Reject', 'rejected']]), include_blank: 'Update Status' %>
-                <%= submit_tag 'Update', class: 'btn btn-primary' %>
+                <%= submit_tag 'Update', class: 'btn btn-outline-success btn-sm' %>
               </div>
             </div>
           <% end %>
