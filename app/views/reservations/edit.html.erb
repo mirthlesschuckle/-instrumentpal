@@ -12,8 +12,9 @@
       <%= form.date_field :end_date, class: "form-control" %>
     </div>
 
-    <%= form.submit "Update", class: "btn btn-primary" %>
+    <%= form.submit "Update", class: "btn btn-outline-success" %>
   <% end %>
 
+  <%= button_to 'Delete', reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
   <%= link_to "My Reservations", reservations_path, class: "btn btn-secondary mt-3" %>
 </div>

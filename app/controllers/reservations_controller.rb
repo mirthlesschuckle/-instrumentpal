@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :update]
+  before_action :set_reservation, only: [:edit, :update, :destroy]
   before_action :set_reservation_for_update_status, only: [:update_status]
 
   def index
@@ -42,7 +42,12 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-
+    if @reservation.present?
+      @reservation.destroy
+      redirect_to reservations_path, alert: 'Reservation was successfully deleted.'
+    else
+      redirect_to reservations_path, alert: 'You are not authorized to delete this reservation.'
+    end
   end
 
   private
