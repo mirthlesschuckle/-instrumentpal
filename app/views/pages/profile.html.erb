@@ -1,24 +1,6 @@
 <div class="container">
   <h1><strong><%= "#{(current_user.name).capitalize}'s Profile" %></strong></h1>
-  <h2>Instrument Reservations</h2>
-
-  <div class="">
-    <ul>
-      <% @reservations.each do |reservation| %>
-        <li><%= "#{reservation.instrument.model}" %></li>
-      <% end %>
-    </ul>
-  </div>
-
-  <h2><%= "#{(current_user.name).capitalize}'s Owned Instruments" %></h2>
-  <div class="">
-    <ul>
-      <% current_user.instruments.each do |instrument| %>
-        <li><%= (instrument.model).capitalize %></li>
-      <% end %>
-    </ul>
-
-  </div>
+  <h2>Overview</h2>
 
   <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
   <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>

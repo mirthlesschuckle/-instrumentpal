@@ -134,7 +134,7 @@ instruments_id.zip(photos_instrument_url).each do |instrument_id, photo_url|
   puts "Setting photo for instrument #{instrument_id} from URL #{photo_url}"
   photo = URI.open(photo_url)
   instrument = Instrument.find(instrument_id)
-  instrument.photo.attach(io: photo, filename: "#{rand(1...1000)}_instrument.png")
+  instrument.photo.attach(io: photo, filename: "#{rand(1...10)}_instrument.png")
 end
 
 reservations = [

@@ -1,16 +1,29 @@
 <div class="container p-2">
-  <h1>Instruments available for rental</h1>
+  <div class="row justify-content-between align-items-center">
+    <div class="col-auto">
+      <%= link_to fa_icon("angle-left", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 40px;'), root_path%>
+    </div>
+    <div class="col-auto">
+      <h1 class="text-center mt-5 mb-5">Instruments available for rental</h1>
+    </div>
+    <div class="col-auto">
+      <%= link_to fa_icon("plus", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 30px;'),  new_instrument_path%>
+    </div>
+  </div>
 
-  <% @instruments.each do |instrument| %>
-
-    <%= link_to instrument_path(instrument), class: "" do %>
-      <h5 class="card-title mb-0" style=""><%= instrument.model %></h5>
-      <p class="card-text small" style=""><%= instrument.address %></p>
-      <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @instruments.each do |instrument| %>
+      <div class="col">
+        <%= link_to instrument_path(instrument), class: "card-link text-decoration-none" do %>
+          <div class="card h-100" style="margin: 0 20px;">
+            <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top mx-auto d-block" %>
+            <div class="card-body text-center">
+              <h3 class="card-title text-dark" style="margin-top: 40px; font-size: 25px;"><%= instrument.model %></h3>
+              <h5 class="card-text text-dark" style="margin-top: 40px;">address: <%= instrument.address %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-
-  <% end %>
-
-  <%= link_to "Add a new instrument", new_instrument_path, class: "btn btn-primary m-4" %>
-  <%= link_to "Back to homepage", root_path, class: "btn btn-primary m-4" %>
+  </div>
 </div>

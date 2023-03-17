@@ -9,8 +9,7 @@ class PagesController < ApplicationController
     @instruments = current_user.instruments
   end
 
-  def rent_instruments
-    @reservations = current_user.reservations
+  def story
   end
 
   def own_instruments

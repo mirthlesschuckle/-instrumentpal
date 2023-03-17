@@ -1,18 +1,21 @@
-.footer{
+.footer {
   background-color: #000;
   color: #fff;
-  padding: 60px;
+  padding: 20px;
   text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  height: 150px; /* set the height of the footer */
+  transition: opacity 0.5s ease-in-out 0.5s;
+  margin-top: 60px;
 }
 
-.footer .links{
+.footer .links {
   display: flex;
   justify-content: center;
 }
 
-.footer .links a{
-  color: #fff;
-  text-decoration: none;
-  font-size: 35px;
-  margin-left: 20px;
+.show-footer {
+  opacity: 1; /* show the footer when the class is added */
 }

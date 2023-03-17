@@ -13,12 +13,12 @@
   </head>
 
   <body>
-    <div style="margin-top: 100px";>
-      <p class="notice"><%= notice %></p>
+    <div style="margin-top: 100px;">
       <p class="alert"><%= alert %></p>
       <%= render "shared/navbar" %>
       <%= render "shared/flashes" %>
       <%= yield %>
+      <%= render "shared/footer" %>
     </div>
   </body>
 </html>

@@ -16,14 +16,14 @@
           </li>
 
           <li class="nav-item active">
-            <%= link_to "#{(current_user.name).capitalize}", profile_path, class: "nav-link" %>
+            <%= link_to "#{(current_user.name).capitalize}", reservations_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item dropdown">
             <%= image_tag "https://www.nicepng.com/png/detail/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "#{(current_user.name).capitalize}'s Bookings", rent_instruments_path, class: "dropdown-item" %>
-              <%= link_to "#{(current_user.name).capitalize}'s Instruments", own_instruments_path, class: "dropdown-item" %>
+              <%= link_to "#{(current_user.name).capitalize}'s Profile", profile_path, class: "dropdown-item" %>
+              <%= link_to "#{(current_user.name).capitalize}'s Reservations", reservations_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
