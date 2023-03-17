@@ -4,7 +4,17 @@ class InstrumentsController < ApplicationController
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def index
-    @instruments = available_instruments
+    start_date = Date.today
+    end_date = Date.today + 1.month # or any other desired end_date
+    @instruments = available_instruments()
+    # @instruments = available_instruments(start_date, end_date)
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude
+      }
+    end
   end
 
   def available_instruments
@@ -47,7 +57,7 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:location, :model, :price, :photo)
+    params.require(:instrument).permit(:address, :model, :price, :photo)
   end
 
   def set_instrument

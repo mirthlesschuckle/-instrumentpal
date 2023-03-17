@@ -19,7 +19,7 @@
             <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: "card-img-top mx-auto d-block" %>
             <div class="card-body text-center">
               <h3 class="card-title text-dark" style="margin-top: 40px; font-size: 25px;"><%= instrument.model %></h3>
-              <h5 class="card-text text-dark" style="margin-top: 40px;">Location: <%= instrument.location %></h5>
+              <h5 class="card-text text-dark" style="margin-top: 40px;">address: <%= instrument.address %></h5>
             </div>
           </div>
         <% end %>

@@ -22,22 +22,20 @@
 
     <div data-tabs-target="content">
       <% @reservations.each do |reservation| %>
-        <div class="container">
-          <%= link_to edit_reservation_path(reservation), class: "text-decoration-none", style: "max-width-700px" do %>
-            <div class="card-product">
-              <%= cl_image_tag reservation.instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
-              <div class="card-product-infos">
-                <h3><%= reservation.instrument.model %></h3>
-                <p>Location: <%= reservation.instrument.location %></p>
-                <p>From: <%= reservation.start_date.strftime('%A %d %B %Y') %></p>
-                <p>Until: <%= reservation.end_date.strftime('%A %d %B %Y') %></p>
-                <p>
-                  For: <%= "#{(reservation.end_date - reservation.start_date).to_i}
-                  #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %>
-                </p>
-                <p>Owner: <%= (reservation.instrument.user.name).capitalize %></p>
-                <p>Booking Status: <%= reservation.status %></p>
-              </div>
+        <%= link_to edit_reservation_path(reservation), class: "text-decoration-none", style: "max-width-700px" do %>
+          <div class="card-product">
+            <%= cl_image_tag reservation.instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
+            <div class="card-product-infos">
+              <h3><%= reservation.instrument.model %></h3>
+              <p>address: <%= reservation.instrument.address %></p>
+              <p>From: <%= reservation.start_date.strftime('%A %d %B %Y') %></p>
+              <p>Until: <%= reservation.end_date.strftime('%A %d %B %Y') %></p>
+              <p>
+                For: <%= "#{(reservation.end_date - reservation.start_date).to_i}
+                #{(reservation.end_date - reservation.start_date).to_i == 1 ? "day" : "days"}" %>
+              </p>
+              <p>Owner: <%= (reservation.instrument.user.name).capitalize %></p>
+              <p>Booking Status: <%= reservation.status %></p>
             </div>
           <% end %>
 
@@ -52,7 +50,7 @@
             <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
             <div class="card-product-infos">
               <h3><%= (instrument.model).capitalize %></h3>
-              <p>Location: <%= (instrument.location).capitalize %></p>
+              <p>address: <%= (instrument.address).capitalize %></p>
               <p>Pricing: <%= "#{instrument.price}€/day" %></p>
               <p>
                 <% if instrument.reservations.present? %>
@@ -81,7 +79,7 @@
               <%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill, class: 'card-product-img' %>
               <div class="card-product-infos">
                 <h3><%= (instrument.model).capitalize %></h3>
-                <p>Location: <%= (instrument.location).capitalize %></p>
+                <p>address: <%= (instrument.address).capitalize %></p>
                 <p>
                   <%= "Booking Status: #{reservation.status}" %>
                 </p>

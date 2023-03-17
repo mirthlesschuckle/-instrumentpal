@@ -121,6 +121,7 @@ GEM
       railties (>= 3.2, < 8.0)
     font-awesome-sass (6.3.0)
       sassc (~> 2.0)
+    geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-rails
   font-awesome-sass (~> 6.1)
+  geocoder
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
