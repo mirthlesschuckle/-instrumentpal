@@ -3,6 +3,14 @@ class InstrumentsController < ApplicationController
     start_date = Date.today
     end_date = Date.today + 1.month # or any other desired end_date
     @instruments = available_instruments(start_date, end_date)
+    @instruments = Instrument.all
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude
+      }
+    end
   end
 
   def available_instruments(start_date, end_date)

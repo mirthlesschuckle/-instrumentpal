@@ -17,5 +17,13 @@ class PagesController < ApplicationController
     @instruments = current_user.instruments
   end
 
-
+  def map_instruments
+    @instruments = Instrument.all
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude
+      }
+    end
+  end
 end

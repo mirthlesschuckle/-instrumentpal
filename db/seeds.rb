@@ -44,61 +44,61 @@ end
 
 instruments = [
   {
-    location: 'London',
+    address: 'London',
     model: 'Piano',
     price: 1000,
     user: User.all.sample
   },
   {
-    location: 'Berlin',
+    address: 'Berlin',
     model: 'Guitar',
     price: 150,
     user: User.all.sample
   },
   {
-    location: 'Birmingham',
+    address: 'Birmingham',
     model: 'Flute',
     price: 80,
     user: User.all.sample
   },
   {
-    location: 'Glasgow',
+    address: 'Glasgow',
     model: 'violin',
     price: 65,
     user: User.all.sample
   },
   {
-    location: 'Belfast',
+    address: 'Belfast',
     model: 'Bass',
     price: 200,
     user: User.all.sample
   },
   {
-    location: 'Porto',
+    address: 'Porto',
     model: 'Birimbau',
     price: 300,
     user: User.all.sample
   },
   {
-    location: 'Paris',
+    address: 'Paris',
     model: 'Drums',
     price: 280,
     user: User.all.sample
   },
   {
-    location: 'Milan',
+    address: 'Milan',
     model: 'Cello',
     price: 170,
     user: User.all.sample
   },
   {
-    location: 'Madrid',
+    address: 'Madrid',
     model: 'Saxophone',
     price: 80,
     user: User.all.sample
   },
   {
-    location: 'Brussels',
+    address: 'Brussels',
     model: 'Triangle',
     price: 10,
     user: User.all.sample
@@ -121,7 +121,7 @@ instruments_id = []
 instruments.each do |instrument|
   instrument = Instrument.new(
     model: instrument[:model],
-    location: instrument[:location],
+    address: instrument[:address],
     price: instrument[:price],
     user: instrument[:user]
   )

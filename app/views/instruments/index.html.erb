@@ -5,7 +5,7 @@
 
     <%= link_to instrument_path(instrument), class: "" do %>
       <h5 class="card-title mb-0" style=""><%= instrument.model %></h5>
-      <p class="card-text small" style=""><%= instrument.location %></p>
+      <p class="card-text small" style=""><%= instrument.address %></p>
       <p><%= cl_image_tag instrument.photo.key, height: 300, width: 400, crop: :fill %><p>
     <% end %>
 
