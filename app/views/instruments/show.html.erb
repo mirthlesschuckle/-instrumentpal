@@ -12,6 +12,9 @@
       <div class="d-flex justify-content-between align-items-center">
         <%= link_to fa_icon("angle-left", class: "fa-solid fa-2x mr-2", style: 'color: black; font-size: 40px;'), instruments_path %>
         <%= link_to "Reserve this instrument", new_instrument_reservation_path(@instrument), style: "background-color: #2156af; border-radius: 20px; border: none; color: #FFFFFF; font-size: 20px; font-weight: bold; padding: 10px 20px; text-decoration: none; transition: all 0.3s ease-in-out;" %>
+          <% if current_user == @instrument.user %>
+            <%= link_to "Delete", instrument_path(@instrument), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger m-4' %>
+          <% end %>
       </div>
     </div>
   </div>
