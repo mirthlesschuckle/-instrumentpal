@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.new(reservation_params)
     @reservation.instrument = @instrument
     if @reservation.save
-      redirect_to reservations_path, notice: 'Reservation was successfully created.'
+      redirect_to reservations_path, alert: 'Reservation was successfully created.'
     else
       redirect_to instruments_path(@instrument), status: :unprocessable_entity
     end
@@ -27,17 +27,17 @@ class ReservationsController < ApplicationController
 
   def update
     if @reservation.update(reservation_params)
-      redirect_to reservations_path, notice: 'Reservation was successfully updated.'
+      redirect_to reservations_path, alert: 'Reservation was successfully updated.'
     else
-      render :edit, notice: 'Nothing as been changed.'
+      render :edit, alert: 'Nothing as been changed.'
     end
   end
 
   def update_status
     if @reservation.update(status: params[:reservation][:status])
-      redirect_to reservations_path, notice: 'Reservation was successfully updated.'
+      redirect_to reservations_path, alert: 'Reservation was successfully updated.'
     else
-      render :edit, notice: 'Nothing has been changed.'
+      render :edit, alert: 'Nothing has been changed.'
     end
   end
 
