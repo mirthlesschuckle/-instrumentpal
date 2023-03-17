@@ -37,6 +37,13 @@ class InstrumentsController < ApplicationController
     redirect_to instruments_path(@instrument)
   end
 
+  def destroy
+    @instrument = Instrument.find(params[:id])
+    @instrument.destroy
+    # No need for app/views/instruments/destroy.html.erb
+    redirect_to instruments_path, alert: 'Instrument was successfully deleted.'
+  end
+
   private
 
   def instrument_params
