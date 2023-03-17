@@ -1,5 +1,5 @@
 <div class="container p-2">
-<h1> Edit or remove your <%= @instrument.model %></h1>
+<h1> Edit <%= @instrument.model %></h1>
 <%= simple_form_for(@instrument) do |f| %>
   <%= f.input :model %>
   <%= f.input :location %>
@@ -11,8 +11,6 @@
 <div class="row">
     <div class="col-lg-12 d-flex justify-content-start">
       <%= link_to "Back to all instruments", instruments_path, class: "btn btn-primary m-4" %>
-      <%= link_to "Delete", instrument_path(@instrument), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger m-4'%>
-
     </div>
   </div>
 </div>
